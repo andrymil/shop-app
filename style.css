@@ -1,0 +1,29 @@
+.app {
+    display: flex;
+    gap: 5px;
+    margin: auto;
+}
+
+.shop {
+    border: 2px solid black;
+    border-radius: 5px;
+    display: inline;
+    max-width: 546px;
+}
+
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cart {
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.title {
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+}

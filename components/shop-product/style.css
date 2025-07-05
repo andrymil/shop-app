@@ -1,0 +1,48 @@
+.product {
+    border: 2px solid grey;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+}
+
+.product-basics {
+    display: flex;
+    gap: 10px
+}
+
+.product-details {
+    display: flex;
+}
+
+.product-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2px;
+    height: 50px;
+}
+
+.price {
+    border-right: 2px solid black;
+    display: flex;
+    padding-right: 3px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+}
+
+.action {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.amount-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
