@@ -1,0 +1,24 @@
+.manufacturer-cart-section {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 8px;
+    background: #fff;
+}
+
+.label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.section-total {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+#products {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
