@@ -1,7 +1,7 @@
 import '/components/cart-manufacturer/cart-manufacturer.js';
 import { cartState } from '/state/cartState.js';
 
-const cartContainer = document.querySelector('.cart');
+const cartContainer = document.getElementById('cart-products');
 
 function groupByManufacturer(items) {
     const map = new Map();
