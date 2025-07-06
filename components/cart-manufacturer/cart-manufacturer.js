@@ -34,7 +34,9 @@ class CartManufacturer extends HTMLElement {
         products.forEach(product => {
             const el = document.createElement('cart-product');
             el.product = product;
-            sectionTotal += (product.price ?? 0) * (product.quantity ?? 1);
+            if (product.selected) {
+                sectionTotal += (product.price ?? 0) * (product.quantity ?? 1);
+            }
             productsContainer.appendChild(el);
         });
 

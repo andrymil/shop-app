@@ -25,34 +25,15 @@ cartState.subscribe((items) => {
         el.data = group;
 
         group.products.forEach(p => {
-            grandTotal += (p.price ?? 0) * (p.quantity ?? 1);
+            if (p.selected) {
+                grandTotal += (p.price ?? 0) * (p.quantity ?? 1);
+            }
         });
 
         cartContainer.appendChild(el);
     });
 
-    const footer = document.createElement('div');
-    footer.innerHTML = `<div class="grand-total">Grand total: ${grandTotal.toFixed(2)}$</div>`;
-    footer.style.cssText = `
-    background: #ddd;
-    padding: 10px;
-    text-align: right;
-    font-weight: bold;
-    border-top: 2px solid #999;
-  `;
-    cartContainer.appendChild(footer);
+    const totalDisplay = document.getElementById('grand-total');
+    totalDisplay.textContent = `Grand total: ${grandTotal.toFixed(2)}$`;
+    totalDisplay.hidden = false;
 });
-
-cartState.addItem({ manufacturer: "Lenovo", name: "Laptop", price: 10, quantity: 2 });
-cartState.addItem({ manufacturer: "Lenovo", name: "Mouse", price: 100, quantity: 5 });
-cartState.addItem({ manufacturer: "Dell", name: "Keyboard", price: 1000, quantity: 10 });
-
-setTimeout(() => {
-    cartState.updateQuantity("Mouse", 100);
-}, 5000);
-setTimeout(() => {
-    cartState.removeItem("Keyboard");
-}, 10000);
-setTimeout(() => {
-    cartState.clear();
-}, 15000);
