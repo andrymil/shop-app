@@ -2,6 +2,23 @@ import '/components/cart-manufacturer/cart-manufacturer.js';
 import { cartState } from '/state/cartState.js';
 
 const cartContainer = document.getElementById('cart-products');
+const cartEmptyDisplay = document.getElementById('cart-empty');
+const totalDisplay = document.getElementById('grand-total');
+
+cartContainer.addEventListener('update-quantity', (event) => {
+    const { name, quantity } = event.detail;
+    cartState.updateQuantity(name, quantity);
+});
+
+cartContainer.addEventListener('remove-item', (event) => {
+    const { name } = event.detail;
+    cartState.removeItem(name);
+});
+
+cartContainer.addEventListener('toggle-selection', (event) => {
+    const { name, selected } = event.detail;
+    cartState.toggleSelection(name, selected);
+});
 
 function groupByManufacturer(items) {
     const map = new Map();
@@ -15,6 +32,12 @@ function groupByManufacturer(items) {
 
 cartState.subscribe((items) => {
     cartContainer.innerHTML = '';
+
+    if (items.length === 0) {
+        totalDisplay.hidden = true;
+        cartEmptyDisplay.hidden = true;
+        return;
+    }
 
     const groups = groupByManufacturer(items);
     console.log("groups", groups);
@@ -33,7 +56,7 @@ cartState.subscribe((items) => {
         cartContainer.appendChild(el);
     });
 
-    const totalDisplay = document.getElementById('grand-total');
     totalDisplay.textContent = `Grand total: ${grandTotal.toFixed(2)}$`;
     totalDisplay.hidden = false;
+    cartEmptyDisplay.hidden = true;
 });

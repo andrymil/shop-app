@@ -6,13 +6,23 @@ export const cartState = {
         if (existing) {
             existing.quantity += product.quantity ?? 1;
         } else {
-            this.items.push({ ...product, quantity: product.quantity ?? 1 });
+            this.items.push({
+                ...product,
+                quantity: product.quantity ?? 1,
+                selected: true
+            });
         }
         this.notify();
     },
 
     removeItem(name) {
         this.items = this.items.filter(item => item.name !== name);
+        this.notify();
+    },
+
+    toggleSelection(name, selected) {
+        const item = this.items.find(p => p.name === name);
+        if (item) item.selected = selected;
         this.notify();
     },
 
