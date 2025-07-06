@@ -1,36 +1,36 @@
 export const products = [{
     name: "Dell",
-    producent: "Lenovo",
+    manufacturer: "Lenovo",
     description: "Very fast",
     price: 5000
 },
 {
     name: "Mouse",
-    producent: "Logitech",
+    manufacturer: "Logitech",
     description: "Really comfortable",
     price: 300
 },
 {
     name: "Keyboard",
-    producent: "Logitech",
+    manufacturer: "Logitech",
     description: "Quiet switches",
     price: 500
 },
 {
     name: "Printer",
-    producent: "Dell",
+    manufacturer: "Dell",
     description: "Very quiet",
     price: 800
 },
 {
     name: "PC",
-    producent: "Lenovo",
+    manufacturer: "Lenovo",
     description: "Fast gaming PC",
     price: 10000
 },
 {
     name: "Headphones",
-    producent: "HyperX",
+    manufacturer: "HyperX",
     description: "Good sound",
     price: 400
 },

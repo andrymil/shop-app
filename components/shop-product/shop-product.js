@@ -64,7 +64,7 @@ class ShopProductTemplate extends HTMLElement {
         if (!root.getElementById('name')) return;
 
         root.getElementById('name').textContent = data.name ?? "Unknown";
-        root.getElementById('producent').textContent = data.producent ?? "Unknown";
+        root.getElementById('manufacturer').textContent = data.manufacturer ?? "Unknown";
         root.getElementById('description').textContent = data.description ?? "Good product";
         root.getElementById('price').textContent = data.price ? Number(data.price).toFixed(2) + '$' : "0.00$";
         root.getElementById('image').src = data.image ?? "public/image.png";
