@@ -1,5 +1,5 @@
 import "/components/shop-product/shop-product.js";
-import { products } from "/data.js";
+import { products } from "/utils/data.js";
 import { cartState } from "/state/cartState.js";
 
 const container = document.getElementById("shop-products");

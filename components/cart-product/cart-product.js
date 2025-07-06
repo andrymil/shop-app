@@ -45,7 +45,6 @@ class CartProduct extends HTMLElement {
         };
 
         this.plusButton?.addEventListener('click', updateQuantity(q => q + 1));
-
         this.minusButton?.addEventListener('click', updateQuantity(q => Math.max(1, q - 1)));
 
         this.removeButton?.addEventListener('click', () => {

@@ -1,5 +1,5 @@
 export const products = [{
-    name: "Dell",
+    name: "Laptop",
     manufacturer: "Lenovo",
     description: "Very fast",
     price: 5000

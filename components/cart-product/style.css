@@ -13,6 +13,7 @@
 .product-price {
     width: 50px;
     text-align: right;
+    margin-right: 20px;
 }
 
 input[type="number"] {
