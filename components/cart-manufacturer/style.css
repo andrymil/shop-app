@@ -1,5 +1,6 @@
 .manufacturer-cart-section {
-    border: 1px solid #ccc;
+    border: 2px solid #a7a3a3;
+    border-radius: 2px;
     padding: 10px;
     margin-bottom: 8px;
     background: #fff;
@@ -11,12 +12,13 @@
 }
 
 .label {
-    font-weight: bold;
+    font-size: large;
     display: block;
     margin-bottom: 8px;
 }
 
 .section-total {
+    padding: 5px;
     text-align: right;
     font-weight: bold;
     margin-top: 8px;

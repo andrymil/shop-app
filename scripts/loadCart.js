@@ -78,6 +78,7 @@ function addManufacturers(groups, existingBlocks) {
 function onCartChange(items) {
     if (items.length === 0) {
         cartContainer.innerHTML = '';
+        cartContainer.hidden = true;
         totalDisplay.hidden = true;
         cartEmptyDisplay.hidden = false;
         return;
@@ -89,8 +90,9 @@ function onCartChange(items) {
     deleteManufacturers(groups, existingBlocks);
     addManufacturers(groups, existingBlocks);
 
-    totalDisplay.hidden = false;
     cartEmptyDisplay.hidden = true;
+    cartContainer.hidden = false;
+    totalDisplay.hidden = false;
 }
 
 addEventListeners();

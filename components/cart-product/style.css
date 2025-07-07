@@ -1,9 +1,17 @@
 .cart-product {
     display: flex;
     align-items: center;
+}
+
+.product-details {
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
     gap: 8px;
-    padding: 6px 0;
     font-family: sans-serif;
+    width: 100%;
 }
 
 .product-name {
@@ -11,23 +19,32 @@
 }
 
 .product-price {
-    width: 50px;
+    width: 60px;
     text-align: right;
     margin-right: 20px;
 }
 
-input[type="number"] {
-    width: 40px;
-    text-align: center;
+.quantity-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.quantity-buttons>button:first-child {
+    border-bottom: 1px solid grey;
 }
 
 .btn {
-    padding: 2px 6px;
     border: none;
+    border-left: 1px solid grey;
     background: #eee;
     cursor: pointer;
+    height: 25px;
+    width: 25px;
 }
 
-.btn.remove {
-    background: #f88;
+.remove {
+    cursor: pointer;
+    padding-left: 6px;
+    width: 25px;
+    height: 25px;
 }

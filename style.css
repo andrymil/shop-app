@@ -9,7 +9,7 @@
     border-radius: 5px;
     padding: 8px;
     display: inline;
-    max-width: 610px;
+    max-width: 612px;
 }
 
 .products-list {
@@ -18,10 +18,13 @@
 }
 
 .cart {
+    position: relative;
     border: 2px solid black;
     border-radius: 5px;
     padding: 8px;
     min-width: 340px;
+    height: 100%;
+    overflow: hidden;
 }
 
 .header {
@@ -36,10 +39,32 @@
     margin-left: 10px;
 }
 
-#grand-total {
+#cart-products {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 470px;
+    padding-bottom: 50px;
+}
+
+#cart-empty {
     background: #ddd;
+    font-size: 17px;
     padding: 10px;
-    text-align: right;
+    margin: 14px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+#grand-total {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 17px;
     font-weight: bold;
     border-top: 2px solid #999;
+    z-index: 1;
 }

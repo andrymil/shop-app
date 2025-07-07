@@ -11,13 +11,17 @@
             @import './components/cart-product/style.css';
         </style>
         <div class="cart-product">
-            <input class="product-select" type="checkbox" />
-            <span class="product-name" id="name">Product Name</span>
-            <span class="product-price" id="price">10$</span>
-            <span id="quantity"></span>
-            <button class="btn increase">+</button>
-            <button class="btn decrease">-</button>
-            <button class="btn remove">🗑</button>
+            <div class="product-details">
+                <input class="product-select" type="checkbox" />
+                <span class="product-name" id="name">Product Name</span>
+                <span class="product-price" id="price">10$</span>
+                <span class="product-quantity" id="quantity"></span>
+                <div class="quantity-buttons">
+                    <button class="btn increase">+</button>
+                    <button class="btn decrease">-</button>
+                </div>
+            </div>
+            <input class="remove" type="image" src="public/delete.png">
         </div>
     </template>
 </body>
