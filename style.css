@@ -9,12 +9,15 @@
     border-radius: 5px;
     padding: 8px;
     display: inline;
-    max-width: 612px;
+    max-width: 626px;
 }
 
 .products-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    max-height: 82vh;
+    overflow: auto;
 }
 
 .cart {
@@ -41,8 +44,8 @@
 
 #cart-products {
     flex: 1;
-    overflow-y: auto;
-    max-height: 470px;
+    max-height: 76vh;
+    overflow: auto;
     padding-bottom: 50px;
 }
 
