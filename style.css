@@ -71,7 +71,7 @@
     z-index: 1;
 }
 
-.badge {
+#badge {
     background-color: rgb(69, 141, 75);
     color: white;
     position: absolute;

@@ -4,6 +4,7 @@ import { cartState } from '/state/cartState.js';
 const cartContainer = document.getElementById('cart-products');
 const cartEmptyDisplay = document.getElementById('cart-empty');
 const totalDisplay = document.getElementById('grand-total');
+const badgeDisplay = document.getElementById('badge');
 
 function addEventListeners() {
     cartContainer.addEventListener('update-quantity', (event) => {
@@ -76,6 +77,8 @@ function addManufacturers(groups, existingBlocks) {
 }
 
 function onCartChange(items) {
+    badgeDisplay.textContent = items.length;
+
     if (items.length === 0) {
         cartContainer.innerHTML = '';
         cartContainer.hidden = true;
