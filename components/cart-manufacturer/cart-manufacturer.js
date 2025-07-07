@@ -1,3 +1,4 @@
+import { cartState } from '../../state/cartState.js';
 import { loadTemplate } from '../../utils/templateLoader.js';
 import '../cart-product/cart-product.js';
 
@@ -12,6 +13,7 @@ class CartManufacturer extends HTMLElement {
                 if (this._data) {
                     this.updateProducts();
                 }
+                this.addEventListeners();
             })
             .catch(err => console.error('Failed to load cart-manufacturer template:', err));
     }
@@ -27,6 +29,15 @@ class CartManufacturer extends HTMLElement {
             }
 
             this.updateProducts();
+        });
+    }
+
+    addEventListeners() {
+        const checkbox = this.shadowRoot.querySelector(".manufacturer-select");
+        checkbox?.addEventListener('change', (event) => {
+            this._products.forEach((product) => {
+                cartState.toggleSelection(product.name, event.target.checked);
+            })
         });
     }
 
