@@ -5,21 +5,22 @@ const cartContainer = document.getElementById('cart-products');
 const cartEmptyDisplay = document.getElementById('cart-empty');
 const totalDisplay = document.getElementById('grand-total');
 
+function addEventListeners() {
+    cartContainer.addEventListener('update-quantity', (event) => {
+        const { name, quantity } = event.detail;
+        cartState.updateQuantity(name, quantity);
+    });
 
-cartContainer.addEventListener('update-quantity', (event) => {
-    const { name, quantity } = event.detail;
-    cartState.updateQuantity(name, quantity);
-});
+    cartContainer.addEventListener('remove-item', (event) => {
+        const { name } = event.detail;
+        cartState.removeItem(name);
+    });
 
-cartContainer.addEventListener('remove-item', (event) => {
-    const { name } = event.detail;
-    cartState.removeItem(name);
-});
-
-cartContainer.addEventListener('toggle-selection', (event) => {
-    const { name, selected } = event.detail;
-    cartState.toggleSelection(name, selected);
-});
+    cartContainer.addEventListener('toggle-selection', (event) => {
+        const { name, selected } = event.detail;
+        cartState.toggleSelection(name, selected);
+    });
+}
 
 function groupByManufacturer(items) {
     const map = new Map();
@@ -31,16 +32,7 @@ function groupByManufacturer(items) {
     return [...map.entries()].map(([manufacturer, products]) => ({ manufacturer, products }));
 }
 
-cartState.subscribe((items) => {
-    if (items.length === 0) {
-        cartContainer.innerHTML = '';
-        totalDisplay.hidden = true;
-        cartEmptyDisplay.hidden = false;
-        return;
-    }
-
-    const groups = groupByManufacturer(items);
-
+function getExistingBlocks() {
     const existingBlocks = new Map();
     Array.from(cartContainer.children).forEach(child => {
         if (child.tagName === 'CART-MANUFACTURER' && child._manufacturer) {
@@ -48,6 +40,10 @@ cartState.subscribe((items) => {
         }
     });
 
+    return existingBlocks;
+}
+
+function deleteManufacturers(groups, existingBlocks) {
     const neededManufacturers = new Set(groups.map(g => g.manufacturer));
 
     existingBlocks.forEach((element, manufacturer) => {
@@ -55,7 +51,9 @@ cartState.subscribe((items) => {
             cartContainer.removeChild(element);
         }
     });
+}
 
+function addManufacturers(groups, existingBlocks) {
     let grandTotal = 0;
 
     groups.forEach(group => {
@@ -75,6 +73,25 @@ cartState.subscribe((items) => {
     });
 
     totalDisplay.textContent = `Grand total: ${grandTotal.toFixed(2)}$`;
+}
+
+function onCartChange(items) {
+    if (items.length === 0) {
+        cartContainer.innerHTML = '';
+        totalDisplay.hidden = true;
+        cartEmptyDisplay.hidden = false;
+        return;
+    }
+
+    const groups = groupByManufacturer(items);
+    const existingBlocks = getExistingBlocks();
+
+    deleteManufacturers(groups, existingBlocks);
+    addManufacturers(groups, existingBlocks);
+
     totalDisplay.hidden = false;
     cartEmptyDisplay.hidden = true;
-});
+}
+
+addEventListeners();
+cartState.subscribe(onCartChange);
