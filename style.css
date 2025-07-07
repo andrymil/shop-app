@@ -1,14 +1,15 @@
 .app {
     display: flex;
-    gap: 5px;
-    margin: auto;
+    gap: 10px;
+    justify-content: center;
 }
 
 .shop {
     border: 2px solid black;
     border-radius: 5px;
+    padding: 8px;
     display: inline;
-    max-width: 546px;
+    max-width: 610px;
 }
 
 .products-list {
@@ -19,7 +20,14 @@
 .cart {
     border: 2px solid black;
     border-radius: 5px;
-    width: 400px;
+    padding: 8px;
+    min-width: 340px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
 }
 
 .title {
