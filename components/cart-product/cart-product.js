@@ -69,6 +69,11 @@ class CartProduct extends HTMLElement {
     renderProduct(data) {
         if (!this.nameSpan || !this.priceSpan || !this.quantitySpan || !this.checkbox) return;
 
+        if (data.quantity === 1) {
+            this.minusButton.disabled = true;
+        } else {
+            this.minusButton.disabled = false;
+        }
         this.checkbox.checked = data.selected !== false;
         this.nameSpan.textContent = data.name ?? 'Unknown';
         this.priceSpan.textContent = data.price ? Number(data.price).toFixed(2) + '$' : '0.00$';

@@ -52,8 +52,13 @@
     border-bottom: none;
     width: 100%;
     height: 50%;
-    background: #eee;
+    background: #ddd;
     cursor: pointer;
+}
+
+.btn:disabled {
+    background-color: rgb(247, 247, 247);
+    cursor: default;
 }
 
 .cart-add {

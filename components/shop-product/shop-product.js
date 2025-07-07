@@ -51,6 +51,12 @@ class ShopProductTemplate extends HTMLElement {
         if (this.quantityDisplay) {
             this.quantityDisplay.textContent = this.quantity;
         }
+
+        if (this.quantity === 1) {
+            this.decreaseButton.disabled = true;
+        } else {
+            this.decreaseButton.disabled = false;
+        }
     }
 
     set product(data) {
