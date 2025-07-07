@@ -24,7 +24,7 @@
     border: 2px solid black;
     border-radius: 5px;
     padding: 8px;
-    min-width: 340px;
+    width: 340px;
     height: 100%;
     overflow: hidden;
 }
@@ -71,12 +71,22 @@
     z-index: 1;
 }
 
-#badge {
-    background-color: rgb(69, 141, 75);
+#clear-button {
+    background-color: #ff002b;
+    border: none;
+    border-radius: 4px;
     color: white;
+    padding: 5px;
     position: absolute;
     right: 20px;
+    cursor: pointer;
+}
+
+#badge {
+    background-color: rgb(64, 132, 187);
+    color: white;
     padding: 4px 9px;
+    margin: 10px;
     text-align: center;
     border-radius: 24px;
 }

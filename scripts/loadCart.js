@@ -5,6 +5,7 @@ const cartContainer = document.getElementById('cart-products');
 const cartEmptyDisplay = document.getElementById('cart-empty');
 const totalDisplay = document.getElementById('grand-total');
 const badgeDisplay = document.getElementById('badge');
+const clearButton = document.getElementById('clear-button');
 
 function addEventListeners() {
     cartContainer.addEventListener('update-quantity', (event) => {
@@ -21,6 +22,7 @@ function addEventListeners() {
         const { name, selected } = event.detail;
         cartState.toggleSelection(name, selected);
     });
+    clearButton.addEventListener('click', () => { cartState.clear() });
 }
 
 function groupByManufacturer(items) {
@@ -77,13 +79,14 @@ function addManufacturers(groups, existingBlocks) {
 }
 
 function onCartChange(items) {
-    badgeDisplay.textContent = items.length;
+    badgeDisplay.textContent = items.reduce(((acc, product) => acc + product.quantity), 0);
 
     if (items.length === 0) {
         cartContainer.innerHTML = '';
         cartContainer.hidden = true;
         totalDisplay.hidden = true;
         cartEmptyDisplay.hidden = false;
+        clearButton.hidden = true;
         return;
     }
 
@@ -96,6 +99,7 @@ function onCartChange(items) {
     cartEmptyDisplay.hidden = true;
     cartContainer.hidden = false;
     totalDisplay.hidden = false;
+    clearButton.hidden = false;
 }
 
 addEventListeners();
