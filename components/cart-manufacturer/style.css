@@ -5,6 +5,11 @@
     background: #fff;
 }
 
+.header {
+    display: flex;
+    gap: 5px;
+}
+
 .label {
     font-weight: bold;
     display: block;

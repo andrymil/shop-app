@@ -11,7 +11,6 @@ class CartManufacturer extends HTMLElement {
                 this.shadowRoot.appendChild(templateContent);
                 if (this._data) {
                     this.updateProducts();
-                    this.updateTotal();
                 }
             })
             .catch(err => console.error('Failed to load cart-manufacturer template:', err));
@@ -28,16 +27,24 @@ class CartManufacturer extends HTMLElement {
             }
 
             this.updateProducts();
-            this.updateTotal();
         });
     }
 
     updateProducts() {
-        const container = this.shadowRoot.getElementById('products');
-        if (!container || !this._products) return;
+        this._container = this.shadowRoot.getElementById('products');
+        if (!this._container || !this._products) return;
 
+        const existingMap = this.getExistingBlocks();
+
+        this.deleteProducts(existingMap);
+        this.addProducts(existingMap);
+        this.updateCheckbox();
+        this.updateTotal();
+    }
+
+    getExistingBlocks() {
         const existingMap = new Map();
-        Array.from(container.children).forEach(node => {
+        Array.from(this._container.children).forEach(node => {
             if (node.tagName === 'CART-PRODUCT') {
                 const name = node._product?.name;
                 if (name) {
@@ -46,15 +53,25 @@ class CartManufacturer extends HTMLElement {
             }
         });
 
+        return existingMap;
+    }
+
+    deleteProducts(existingMap) {
         const updatedNames = new Set(this._products.map(p => p.name));
 
         for (const [name, node] of existingMap.entries()) {
             if (!updatedNames.has(name)) {
-                container.removeChild(node);
+                this._container.removeChild(node);
             }
         }
+    }
 
+    addProducts(existingMap) {
+        this._selected = true;
         this._products.forEach(product => {
+            if (!product.selected) {
+                this._selected = false;
+            }
             const existing = existingMap.get(product.name);
             if (existing) {
                 existing.product = product;
@@ -62,13 +79,19 @@ class CartManufacturer extends HTMLElement {
             } else {
                 const el = document.createElement('cart-product');
                 el.product = product;
-                container.appendChild(el);
+                this._container.appendChild(el);
             }
         });
     }
 
+    updateCheckbox() {
+        const checkbox = this.shadowRoot.querySelector(".manufacturer-select");
+        checkbox.checked = this._selected;
+    }
+
     updateTotal() {
         const totalSpan = this.shadowRoot.getElementById('total');
+
         if (!totalSpan || !this._products) return;
 
         const sectionTotal = this._products.reduce((sum, product) => {
