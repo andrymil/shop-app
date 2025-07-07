@@ -12,7 +12,7 @@
         </style>
         <div class="product">
             <div class="product-basics">
-                <img id="image" alt="Image" width="50px">
+                <img id="image" alt="Image" width="60px" height="60px">
                 <div>
                     <b id="name"></b>
                     <br>
@@ -20,16 +20,14 @@
                 </div>
             </div>
             <p id="description"></p>
-            <div class="product-details">
-                <span id="price" class="price"></span>
-                <div class="product-actions">
-                    <span id="quantity" class="action">12</span>
-                    <span class="amount-buttons">
-                        <button class="btn">+</button>
-                        <button class="btn">-</button>
-                    </span>
-                    <input id="cartButton" type="image" src="public/add_to_card.png" class="cart-add">
-                </div>
+            <div class="actions-grid">
+                <span id="price"></span>
+                <span id="quantity">12</span>
+                <span class="amount-buttons">
+                    <button class="btn">+</button>
+                    <button class="btn">-</button>
+                </span>
+                <input id="cartButton" type="image" src="public/add_to_card.png" class="cart-add">
             </div>
         </div>
     </template>

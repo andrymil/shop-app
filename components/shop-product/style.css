@@ -1,8 +1,10 @@
 .product {
     border: 2px solid grey;
     border-radius: 5px;
-    display: inline-block;
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 5px 0 5px;
     margin: 5px;
     width: 180px;
     height: 160px;
@@ -10,35 +12,31 @@
 
 .product-basics {
     display: flex;
+    height: 60px;
     gap: 10px;
 }
 
-.product-details {
-    display: flex;
-    justify-content: space-between;
+#description {
+    margin: 0;
 }
 
-.product-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 2px;
-    height: 50px;
+.actions-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
 }
 
-.price {
-    border-right: 2px solid black;
+#price {
+    border-top: 2px solid grey;
+    border-right: 2px solid grey;
+    margin-left: -5px;
     display: flex;
-    padding-right: 3px;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    width: 40%;
 }
 
-.action {
-    width: 30px;
-    height: 30px;
+#quantity {
+    border-top: 2px solid grey;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,19 +45,20 @@
 .amount-buttons {
     display: flex;
     flex-direction: column;
-    gap: 2px;
 }
 
 .btn {
-    /* padding: 6px; */
-    width: 25px;
-    height: 20px;
-    border: none;
+    border: 2px solid grey;
+    border-bottom: none;
+    width: 100%;
+    height: 50%;
     background: #eee;
     cursor: pointer;
 }
 
 .cart-add {
+    border-top: 2px solid grey;
+    margin-right: -5px;
     width: 35px;
     height: 35px;
 }
