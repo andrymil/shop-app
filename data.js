@@ -63,6 +63,27 @@ export const products = [
     image: 'chair.jpg',
   },
   {
+    name: 'Speakers',
+    manufacturer: 'HyperX',
+    description: 'Immersive audio',
+    price: 600,
+    image: 'speakers.jpg',
+  },
+  {
+    name: 'Graphics Card',
+    manufacturer: 'NVIDIA',
+    description: 'High-end performance',
+    price: 2500,
+    image: 'gpu.jpg',
+  },
+  {
+    name: 'Router',
+    manufacturer: 'TP-Link',
+    description: 'Wi-Fi 6, ultra-fast',
+    price: 320,
+    image: 'router.jpg',
+  },
+  {
     name: 'External SSD',
     manufacturer: 'Samsung',
     description: 'Blazing fast storage',
@@ -79,23 +100,5 @@ export const products = [
     manufacturer: 'Lenovo',
     description: 'Lightweight and fast',
     price: 1200,
-  },
-  {
-    name: 'Speakers',
-    manufacturer: 'HyperX',
-    description: 'Immersive audio',
-    price: 600,
-  },
-  {
-    name: 'Graphics Card',
-    manufacturer: 'NVIDIA',
-    description: 'High-end performance',
-    price: 2500,
-  },
-  {
-    name: 'Router',
-    manufacturer: 'TP-Link',
-    description: 'Wi-Fi 6, ultra-fast',
-    price: 320,
   },
 ];
