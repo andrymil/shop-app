@@ -1,54 +1,54 @@
 .cart-product {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .product-details {
-    border: 1px solid grey;
-    border-radius: 3px;
-    padding-left: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: sans-serif;
-    width: 100%;
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: sans-serif;
+  width: 100%;
 }
 
 .product-name {
-    flex: 1;
+  flex: 1;
 }
 
 .product-price {
-    width: 60px;
-    margin: 0 20px;
+  width: 60px;
+  margin: 0 20px;
 }
 
 .quantity-buttons {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.quantity-buttons>button:first-child {
-    border-bottom: 1px solid grey;
+.quantity-buttons > button:first-child {
+  border-bottom: 1px solid grey;
 }
 
 .btn {
-    border: none;
-    border-left: 1px solid grey;
-    background: #ddd;
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
+  border: none;
+  border-left: 1px solid grey;
+  background: #ddd;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
 }
 
 .btn:disabled {
-    background-color: rgb(247, 247, 247);
-    cursor: default;
+  background-color: rgb(247, 247, 247);
+  cursor: default;
 }
 
 .remove {
-    cursor: pointer;
-    padding-left: 6px;
-    width: 25px;
-    height: 25px;
+  cursor: pointer;
+  padding-left: 6px;
+  width: 25px;
+  height: 25px;
 }

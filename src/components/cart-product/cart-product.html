@@ -1,29 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-</head>
+  </head>
 
-<body>
+  <body>
     <template id="cart-product-template">
-        <style>
-            @import './components/cart-product/style.css';
-        </style>
-        <div class="cart-product">
-            <div class="product-details">
-                <input class="product-select" type="checkbox" />
-                <span class="product-name" id="name">Product Name</span>
-                <span class="product-price" id="price">10$</span>
-                <span class="product-quantity" id="quantity"></span>
-                <div class="quantity-buttons">
-                    <button class="btn increase">+</button>
-                    <button class="btn decrease">-</button>
-                </div>
-            </div>
-            <input class="remove" type="image" src="public/delete.png">
+      <style>
+        @import './components/cart-product/style.css';
+      </style>
+      <div class="cart-product">
+        <div class="product-details">
+          <input class="product-select" type="checkbox" />
+          <span class="product-name" id="name">Product Name</span>
+          <span class="product-price" id="price">10$</span>
+          <span class="product-quantity" id="quantity"></span>
+          <div class="quantity-buttons">
+            <button class="btn increase">+</button>
+            <button class="btn decrease">-</button>
+          </div>
         </div>
+        <input class="remove" type="image" src="public/delete.png" />
+      </div>
     </template>
-</body>
-
+  </body>
 </html>

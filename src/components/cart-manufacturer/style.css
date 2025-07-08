@@ -1,31 +1,31 @@
 .manufacturer-cart-section {
-    border: 2px solid #a7a3a3;
-    border-radius: 2px;
-    padding: 10px;
-    margin-bottom: 8px;
-    background: #fff;
+  border: 2px solid #a7a3a3;
+  border-radius: 2px;
+  padding: 10px;
+  margin-bottom: 8px;
+  background: #fff;
 }
 
 .header {
-    display: flex;
-    gap: 5px;
+  display: flex;
+  gap: 5px;
 }
 
 .label {
-    font-size: large;
-    display: block;
-    margin-bottom: 8px;
+  font-size: large;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .section-total {
-    padding: 5px;
-    text-align: right;
-    font-weight: bold;
-    margin-top: 8px;
+  padding: 5px;
+  text-align: right;
+  font-weight: bold;
+  margin-top: 8px;
 }
 
 #products {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }

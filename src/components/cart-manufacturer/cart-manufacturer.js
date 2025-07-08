@@ -3,117 +3,121 @@ import { loadTemplate } from '../../utils/templateLoader.js';
 import '../cart-product/cart-product.js';
 
 class CartManufacturer extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
 
-        this._templateReady = loadTemplate('/components/cart-manufacturer/cart-manufacturer.html')
-            .then(templateContent => {
-                this.shadowRoot.appendChild(templateContent);
-                if (this._data) {
-                    this.updateProducts();
-                }
-                this.addEventListeners();
-            })
-            .catch(err => console.error('Failed to load cart-manufacturer template:', err));
-    }
-
-    set data({ manufacturer, products }) {
-        this._manufacturer = manufacturer;
-        this._products = products;
-
-        this._templateReady.then(() => {
-            const label = this.shadowRoot.querySelector('.label');
-            if (label) {
-                label.textContent = manufacturer ?? 'Manufacturer';
-            }
-
-            this.updateProducts();
-        });
-    }
-
-    addEventListeners() {
-        const checkbox = this.shadowRoot.querySelector(".manufacturer-select");
-        checkbox?.addEventListener('change', (event) => {
-            this._products.forEach((product) => {
-                cartState.toggleSelection(product.name, event.target.checked);
-            })
-        });
-    }
-
-    updateProducts() {
-        this._container = this.shadowRoot.getElementById('products');
-        if (!this._container || !this._products) return;
-
-        const existingMap = this.getExistingBlocks();
-
-        this.deleteProducts(existingMap);
-        this.addProducts(existingMap);
-        this.updateCheckbox();
-        this.updateTotal();
-    }
-
-    getExistingBlocks() {
-        const existingMap = new Map();
-        Array.from(this._container.children).forEach(node => {
-            if (node.tagName === 'CART-PRODUCT') {
-                const name = node._product?.name;
-                if (name) {
-                    existingMap.set(name, node);
-                }
-            }
-        });
-
-        return existingMap;
-    }
-
-    deleteProducts(existingMap) {
-        const updatedNames = new Set(this._products.map(p => p.name));
-
-        for (const [name, node] of existingMap.entries()) {
-            if (!updatedNames.has(name)) {
-                this._container.removeChild(node);
-            }
+    this._templateReady = loadTemplate(
+      '/components/cart-manufacturer/cart-manufacturer.html'
+    )
+      .then(templateContent => {
+        this.shadowRoot.appendChild(templateContent);
+        if (this._data) {
+          this.updateProducts();
         }
+        this.addEventListeners();
+      })
+      .catch(err =>
+        console.error('Failed to load cart-manufacturer template:', err)
+      );
+  }
+
+  set data({ manufacturer, products }) {
+    this._manufacturer = manufacturer;
+    this._products = products;
+
+    this._templateReady.then(() => {
+      const label = this.shadowRoot.querySelector('.label');
+      if (label) {
+        label.textContent = manufacturer ?? 'Manufacturer';
+      }
+
+      this.updateProducts();
+    });
+  }
+
+  addEventListeners() {
+    const checkbox = this.shadowRoot.querySelector('.manufacturer-select');
+    checkbox?.addEventListener('change', event => {
+      this._products.forEach(product => {
+        cartState.toggleSelection(product.name, event.target.checked);
+      });
+    });
+  }
+
+  updateProducts() {
+    this._container = this.shadowRoot.getElementById('products');
+    if (!this._container || !this._products) return;
+
+    const existingMap = this.getExistingBlocks();
+
+    this.deleteProducts(existingMap);
+    this.addProducts(existingMap);
+    this.updateCheckbox();
+    this.updateTotal();
+  }
+
+  getExistingBlocks() {
+    const existingMap = new Map();
+    Array.from(this._container.children).forEach(node => {
+      if (node.tagName === 'CART-PRODUCT') {
+        const name = node._product?.name;
+        if (name) {
+          existingMap.set(name, node);
+        }
+      }
+    });
+
+    return existingMap;
+  }
+
+  deleteProducts(existingMap) {
+    const updatedNames = new Set(this._products.map(p => p.name));
+
+    for (const [name, node] of existingMap.entries()) {
+      if (!updatedNames.has(name)) {
+        this._container.removeChild(node);
+      }
     }
+  }
 
-    addProducts(existingMap) {
-        this._selected = true;
-        this._products.forEach(product => {
-            if (!product.selected) {
-                this._selected = false;
-            }
-            const existing = existingMap.get(product.name);
-            if (existing) {
-                existing.product = product;
-                existingMap.delete(product.name);
-            } else {
-                const el = document.createElement('cart-product');
-                el.product = product;
-                this._container.appendChild(el);
-            }
-        });
-    }
+  addProducts(existingMap) {
+    this._selected = true;
+    this._products.forEach(product => {
+      if (!product.selected) {
+        this._selected = false;
+      }
+      const existing = existingMap.get(product.name);
+      if (existing) {
+        existing.product = product;
+        existingMap.delete(product.name);
+      } else {
+        const el = document.createElement('cart-product');
+        el.product = product;
+        this._container.appendChild(el);
+      }
+    });
+  }
 
-    updateCheckbox() {
-        const checkbox = this.shadowRoot.querySelector(".manufacturer-select");
-        checkbox.checked = this._selected;
-    }
+  updateCheckbox() {
+    const checkbox = this.shadowRoot.querySelector('.manufacturer-select');
+    checkbox.checked = this._selected;
+  }
 
-    updateTotal() {
-        const totalSpan = this.shadowRoot.getElementById('total');
+  updateTotal() {
+    const totalSpan = this.shadowRoot.getElementById('total');
 
-        if (!totalSpan || !this._products) return;
+    if (!totalSpan || !this._products) return;
 
-        const sectionTotal = this._products.reduce((sum, product) => {
-            if (product.selected !== false) {
-                return sum + (product.price ?? 0) * (product.quantity ?? 1);
-            }
-            return sum;
-        }, 0);
+    const sectionTotal = this._products.reduce((sum, product) => {
+      if (product.selected !== false) {
+        return sum + (product.price ?? 0) * (product.quantity ?? 1);
+      }
+      return sum;
+    }, 0);
 
-        totalSpan.textContent = `${sectionTotal.toFixed(2)}$`;
-    }
+    totalSpan.textContent = `${sectionTotal.toFixed(2)}$`;
+  }
 }
 
 customElements.define('cart-manufacturer', CartManufacturer);

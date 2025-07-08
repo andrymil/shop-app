@@ -1,36 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-</head>
-
-<body>
+  <body>
     <template id="shop-product-template">
-        <style>
-            @import './components/shop-product/style.css';
-        </style>
-        <div class="product">
-            <div class="product-basics">
-                <img id="image" alt="Image" width="60px" height="60px">
-                <div>
-                    <b id="name"></b>
-                    <br>
-                    <i id="manufacturer"></i>
-                </div>
-            </div>
-            <p id="description"></p>
-            <div class="actions-grid">
-                <span id="price"></span>
-                <span id="quantity">12</span>
-                <span class="amount-buttons">
-                    <button class="btn">+</button>
-                    <button disabled class="btn">-</button>
-                </span>
-                <input id="cartButton" type="image" src="public/add_to_card.png" class="cart-add">
-            </div>
+      <style>
+        @import './components/shop-product/style.css';
+      </style>
+      <div class="product">
+        <div class="product-basics">
+          <img id="image" alt="Image" width="60px" height="60px" />
+          <div>
+            <b id="name"></b>
+            <br />
+            <i id="manufacturer"></i>
+          </div>
         </div>
+        <p id="description"></p>
+        <div class="actions-grid">
+          <span id="price"></span>
+          <span id="quantity">12</span>
+          <span class="amount-buttons">
+            <button class="btn">+</button>
+            <button disabled class="btn">-</button>
+          </span>
+          <input
+            id="cartButton"
+            type="image"
+            src="public/add_to_card.png"
+            class="cart-add"
+          />
+        </div>
+      </div>
     </template>
-</body>
-
+  </body>
 </html>

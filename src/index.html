@@ -1,39 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Shop</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <div class="app">
-        <div class="shop">
-            <span class="header">
-                <img src="/public/shop.png" width="28px" height="28px">
-                <p class="title"><b>THE SHOP</b></p>
-            </span>
-            <hr>
-            <div id="shop-products" class="products-list"></div>
-        </div>
+      <div class="shop">
+        <span class="header">
+          <img src="/public/shop.png" width="28px" height="28px" />
+          <p class="title"><b>THE SHOP</b></p>
+        </span>
+        <hr />
+        <div id="shop-products" class="products-list"></div>
+      </div>
 
-        <div class="cart">
-            <span class="header">
-                <img src="/public/cart.png" width="28px" height="28px">
-                <p class="title"><b>THE CART</b></p>
-                <button id="clear-button" hidden>Clear all</button>
-                <span id="badge">0</span>
-            </span>
-            <hr>
-            <div id="cart-products" hidden></div>
-            <div id="cart-empty">Cart is empty</div>
-            <div id="grand-total" hidden></div>
-        </div>
+      <div class="cart">
+        <span class="header">
+          <img src="/public/cart.png" width="28px" height="28px" />
+          <p class="title"><b>THE CART</b></p>
+          <button id="clear-button" hidden>Clear all</button>
+          <span id="badge">0</span>
+        </span>
+        <hr />
+        <div id="cart-products" hidden></div>
+        <div id="cart-empty">Cart is empty</div>
+        <div id="grand-total" hidden></div>
+      </div>
     </div>
 
     <script type="module" src="/scripts/loadShop.js"></script>
     <script type="module" src="/scripts/loadCart.js"></script>
-</body>
-
+  </body>
 </html>
