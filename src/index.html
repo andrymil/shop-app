@@ -8,18 +8,11 @@
 
   <body>
     <div class="app">
-      <div class="shop">
-        <span class="header">
-          <img src="/public/shop.png" width="28px" height="28px" />
-          <p class="title"><b>THE SHOP</b></p>
-        </span>
-        <hr />
-        <div id="shop-products" class="products-list"></div>
-      </div>
-      <cart-component />
+      <shop-component></shop-component>
+      <cart-component></cart-component>
     </div>
 
-    <script type="module" src="./scripts/loadShop.js"></script>
+    <script type="module" src="./components/shop/shop.js"></script>
     <script type="module" src="./components/cart/cart.js"></script>
   </body>
 </html>

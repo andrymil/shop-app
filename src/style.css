@@ -4,82 +4,9 @@
   justify-content: center;
 }
 
-.shop {
-  border: 2px solid black;
-  border-radius: 5px;
-  padding: 8px;
-  display: inline;
-  max-width: 626px;
-}
-
-.products-list {
-  display: flex;
-  flex-wrap: wrap;
-  max-height: 82vh;
-  overflow: auto;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  margin-left: 16px;
-}
-
-.title {
-  font-size: large;
-  font-family: Arial, Helvetica, sans-serif;
-  margin-left: 10px;
-}
-
-@media (max-width: 1040px) {
-  .shop {
-    max-width: 442px;
-  }
-
-  .products-list {
-    margin-left: 8px;
-  }
-}
-
 @media (max-width: 850px) {
   .app {
     flex-direction: column-reverse;
     align-items: center;
-  }
-
-  .shop {
-    max-width: 634px;
-  }
-
-  .cart {
-    min-width: 634px;
-  }
-
-  .products-list {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 690px) {
-  .shop {
-    max-width: 442px;
-  }
-
-  .cart {
-    min-width: 442px;
-  }
-
-  .products-list {
-    margin-left: 8px;
-  }
-}
-
-@media (max-width: 500px) {
-  .shop {
-    max-width: 240px;
-  }
-
-  .cart {
-    min-width: 340px;
   }
 }

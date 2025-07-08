@@ -16,22 +16,8 @@ class CartComponent extends HTMLElement {
         cartState.subscribe(this.onCartChange.bind(this));
       })
       .catch(err => {
-        console.error('Failed to load cart-product template:', err);
+        console.error('Failed to load cart template:', err);
       });
-  }
-
-  set data({ manufacturer, products }) {
-    this._manufacturer = manufacturer;
-    this._products = products;
-
-    this._templateReady.then(() => {
-      const label = this.shadowRoot.querySelector('.label');
-      if (label) {
-        label.textContent = manufacturer ?? 'Manufacturer';
-      }
-
-      this.updateProducts();
-    });
   }
 
   cacheElements() {
