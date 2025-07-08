@@ -4,6 +4,7 @@ export const products = [
     manufacturer: 'Lenovo',
     description: 'Very fast',
     price: 5000,
+    image: 'laptop.png',
   },
   {
     name: 'Mouse',

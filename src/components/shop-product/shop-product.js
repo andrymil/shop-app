@@ -85,7 +85,9 @@ class ShopProductTemplate extends HTMLElement {
     root.getElementById('price').textContent = data.price
       ? Number(data.price).toFixed(2) + '$'
       : '0.00$';
-    root.getElementById('image').src = data.image ?? 'public/image.png';
+    root.getElementById('image').src = data.image
+      ? `public/products/${data.image}`
+      : 'public/products/fallback.png';
     this.updateQuantityDisplay();
   }
 }
