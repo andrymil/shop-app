@@ -1,5 +1,5 @@
 .product {
-  border: 2px solid grey;
+  border: 2px solid #a7a3a3;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
