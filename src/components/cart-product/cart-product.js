@@ -1,11 +1,11 @@
-import { loadTemplate } from '../../utils/templateLoader.js';
+import { loadTemplate } from '/src/utils/templateLoader.js';
 
 class CartProduct extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
 
-    loadTemplate('/components/cart-product/cart-product.html')
+    loadTemplate('/src/components/cart-product/cart-product.html')
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);
         this.cacheElements();

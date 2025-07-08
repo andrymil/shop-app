@@ -1,4 +1,4 @@
-import { loadTemplate } from '../../utils/templateLoader.js';
+import { loadTemplate } from '/src/utils/templateLoader.js';
 
 class ShopProductTemplate extends HTMLElement {
   constructor() {
@@ -6,7 +6,7 @@ class ShopProductTemplate extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.quantity = 1;
 
-    loadTemplate('/components/shop-product/shop-product.html')
+    loadTemplate('/src/components/shop-product/shop-product.html')
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);
         this.cacheElements();
@@ -86,8 +86,8 @@ class ShopProductTemplate extends HTMLElement {
       ? Number(data.price).toFixed(2) + '$'
       : '0.00$';
     root.getElementById('image').src = data.image
-      ? `public/products/${data.image}`
-      : 'public/products/fallback.png';
+      ? `/public/products/${data.image}`
+      : '/public/products/fallback.png';
     this.updateQuantityDisplay();
   }
 }

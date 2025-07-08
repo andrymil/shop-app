@@ -1,6 +1,6 @@
-import { cartState } from '../../state/cartState.js';
-import { loadTemplate } from '../../utils/templateLoader.js';
-import '../cart-product/cart-product.js';
+import { cartState } from '/src/state/cartState.js';
+import { loadTemplate } from '/src/utils/templateLoader.js';
+import '/src/components/cart-product/cart-product.js';
 
 class CartManufacturer extends HTMLElement {
   constructor() {
@@ -8,7 +8,7 @@ class CartManufacturer extends HTMLElement {
     this.attachShadow({ mode: 'open' });
 
     this._templateReady = loadTemplate(
-      '/components/cart-manufacturer/cart-manufacturer.html'
+      '/src/components/cart-manufacturer/cart-manufacturer.html'
     )
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);

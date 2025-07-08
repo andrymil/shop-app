@@ -1,5 +1,5 @@
-import '/components/cart-manufacturer/cart-manufacturer.js';
-import { cartState } from '/state/cartState.js';
+import '/src/components/cart-manufacturer/cart-manufacturer.js';
+import { cartState } from '/src/state/cartState.js';
 
 const cartContainer = document.getElementById('cart-products');
 const cartEmptyDisplay = document.getElementById('cart-empty');

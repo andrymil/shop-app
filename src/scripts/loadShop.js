@@ -1,6 +1,6 @@
-import '/components/shop-product/shop-product.js';
+import '/src/components/shop-product/shop-product.js';
 import { products } from '/data.js';
-import { cartState } from '/state/cartState.js';
+import { cartState } from '/src/state/cartState.js';
 
 const container = document.getElementById('shop-products');
 
