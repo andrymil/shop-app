@@ -1,3 +1,12 @@
+.cart {
+  position: relative;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 8px;
+  width: 340px;
+  height: 100%;
+  overflow: hidden;
+}
 
 .header {
   display: flex;
@@ -59,4 +68,22 @@
   margin: 10px;
   text-align: center;
   border-radius: 24px;
+}
+
+@media (max-width: 850px) {
+  .cart {
+    width: 634px;
+  }
+}
+
+@media (max-width: 690px) {
+  .cart {
+    width: 442px;
+  }
+}
+
+@media (max-width: 500px) {
+  .cart {
+    width: 340px;
+  }
 }
