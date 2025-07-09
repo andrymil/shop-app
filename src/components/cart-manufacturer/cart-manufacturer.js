@@ -15,6 +15,7 @@ class CartManufacturer extends HTMLElement {
         if (this._data) {
           this.updateProducts();
         }
+        this.cacheELements();
         this.addEventListeners();
       })
       .catch(err =>
@@ -36,9 +37,14 @@ class CartManufacturer extends HTMLElement {
     });
   }
 
+  cacheELements() {
+    this._checkbox = this.shadowRoot.querySelector('.manufacturer-select');
+    this._container = this.shadowRoot.getElementById('products');
+    this._totalSpan = this.shadowRoot.getElementById('total');
+  }
+
   addEventListeners() {
-    const checkbox = this.shadowRoot.querySelector('.manufacturer-select');
-    checkbox?.addEventListener('change', event => {
+    this._checkbox?.addEventListener('change', event => {
       this._products.forEach(product => {
         cartState.toggleSelection(product.name, event.target.checked);
       });
@@ -46,7 +52,6 @@ class CartManufacturer extends HTMLElement {
   }
 
   updateProducts() {
-    this._container = this.shadowRoot.getElementById('products');
     if (!this._container || !this._products) return;
 
     const existingMap = this.getExistingBlocks();
@@ -100,14 +105,11 @@ class CartManufacturer extends HTMLElement {
   }
 
   updateCheckbox() {
-    const checkbox = this.shadowRoot.querySelector('.manufacturer-select');
-    checkbox.checked = this._selected;
+    this._checkbox.checked = this._selected;
   }
 
   updateTotal() {
-    const totalSpan = this.shadowRoot.getElementById('total');
-
-    if (!totalSpan || !this._products) return;
+    if (!this._totalSpan || !this._products) return;
 
     const sectionTotal = this._products.reduce((sum, product) => {
       if (product.selected !== false) {
@@ -116,7 +118,7 @@ class CartManufacturer extends HTMLElement {
       return sum;
     }, 0);
 
-    totalSpan.textContent = `${sectionTotal.toFixed(2)}$`;
+    this._totalSpan.textContent = `${sectionTotal.toFixed(2)}$`;
   }
 }
 
