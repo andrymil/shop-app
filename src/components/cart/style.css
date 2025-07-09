@@ -4,7 +4,7 @@
   border-radius: 5px;
   padding: 8px;
   width: 340px;
-  height: 92vh;
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
 }
@@ -14,6 +14,7 @@
   border-bottom: 2px solid #a7a3a3;
   align-items: center;
   padding: 0 0 6px 16px;
+  margin: 0;
   flex-shrink: 0;
 }
 
@@ -28,7 +29,7 @@
   overflow-y: auto;
   flex-grow: 1;
   overflow-y: auto;
-  margin-bottom: 46px;
+  margin-bottom: 36px;
   padding-top: 15px
 }
 

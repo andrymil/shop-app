@@ -107,7 +107,7 @@ class CartComponent extends HTMLElement {
 
   onCartChange(items) {
     this._badgeDisplay.textContent = items.reduce(
-      (acc, product) => acc + product.quantity,
+      (acc, product) => acc + product.quantity * Number(product.selected),
       0
     );
 
