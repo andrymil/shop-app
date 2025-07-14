@@ -12,6 +12,7 @@ class CartManufacturer extends HTMLElement {
     )
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);
+
         if (this._data) {
           this.updateProducts();
         }
@@ -64,6 +65,7 @@ class CartManufacturer extends HTMLElement {
 
   getExistingBlocks() {
     const existingMap = new Map();
+
     Array.from(this._container.children).forEach(node => {
       if (node.tagName === 'CART-PRODUCT') {
         const name = node._product?.name;
@@ -77,7 +79,7 @@ class CartManufacturer extends HTMLElement {
   }
 
   deleteProducts(existingMap) {
-    const updatedNames = new Set(this._products.map(p => p.name));
+    const updatedNames = new Set(this._products.map(product => product.name));
 
     for (const [name, node] of existingMap.entries()) {
       if (!updatedNames.has(name)) {
@@ -88,10 +90,12 @@ class CartManufacturer extends HTMLElement {
 
   addProducts(existingMap) {
     this._selected = true;
+
     this._products.forEach(product => {
       if (!product.selected) {
         this._selected = false;
       }
+
       const existing = existingMap.get(product.name);
       if (existing) {
         existing.product = product;
@@ -112,8 +116,9 @@ class CartManufacturer extends HTMLElement {
     if (!this._totalSpan || !this._products) return;
 
     const sectionTotal = this._products.reduce((sum, product) => {
-      if (product.selected !== false) {
-        return sum + (product.price ?? 0) * (product.quantity ?? 1);
+      if (product.selected) {
+        const price = (product.price ?? 0) * (product.quantity ?? 1);
+        return sum + price;
       }
       return sum;
     }, 0);

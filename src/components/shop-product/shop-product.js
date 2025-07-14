@@ -9,8 +9,10 @@ class ShopProductTemplate extends HTMLElement {
     loadTemplate('/src/components/shop-product/shop-product.html')
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);
+
         this.cacheElements();
         this.addEventListeners();
+
         if (this._product) this.renderProduct(this._product);
       })
       .catch(err =>
@@ -60,11 +62,7 @@ class ShopProductTemplate extends HTMLElement {
       this.quantityDisplay.textContent = this.quantity;
     }
 
-    if (this.quantity === 1) {
-      this.decreaseButton.disabled = true;
-    } else {
-      this.decreaseButton.disabled = false;
-    }
+    this.decreaseButton.disabled = this.quantity === 1;
   }
 
   set product(data) {
@@ -78,16 +76,21 @@ class ShopProductTemplate extends HTMLElement {
     if (!root.getElementById('name')) return;
 
     root.getElementById('name').textContent = data.name ?? 'Unknown';
+
     root.getElementById('manufacturer').textContent =
       data.manufacturer ?? 'Unknown';
+
     root.getElementById('description').textContent =
       data.description ?? 'Good product';
-    root.getElementById('price').textContent = data.price
-      ? Number(data.price).toFixed(2) + '$'
-      : '0.00$';
-    root.getElementById('image').src = data.image
+
+    const price = data.price ? Number(data.price).toFixed(2) + '$' : '0.00$';
+    root.getElementById('price').textContent = price;
+
+    const imageSrc = data.image
       ? `/public/products/${data.image}`
       : '/public/products/fallback.png';
+    root.getElementById('image').src = imageSrc;
+
     this.updateQuantityDisplay();
   }
 }

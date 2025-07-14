@@ -10,6 +10,7 @@ class CartComponent extends HTMLElement {
     loadTemplate('/src/components/cart/cart.html')
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);
+
         this.cacheElements();
         this.addEventListeners();
 
@@ -44,6 +45,7 @@ class CartComponent extends HTMLElement {
       const { name, selected } = event.detail;
       cartState.toggleSelection(name, selected);
     });
+
     this._clearButton.addEventListener('click', () => {
       cartState.clear();
     });
@@ -51,9 +53,12 @@ class CartComponent extends HTMLElement {
 
   groupByManufacturer(items) {
     const map = new Map();
+
     items.forEach(item => {
       const key = item.manufacturer ?? 'Unknown';
-      if (!map.has(key)) map.set(key, []);
+      if (!map.has(key)) {
+        map.set(key, []);
+      }
       map.get(key).push(item);
     });
     return [...map.entries()].map(([manufacturer, products]) => ({
@@ -64,6 +69,7 @@ class CartComponent extends HTMLElement {
 
   getExistingBlocks() {
     const existingBlocks = new Map();
+
     Array.from(this._cartContainer.children).forEach(child => {
       if (child.tagName === 'CART-MANUFACTURER' && child._manufacturer) {
         existingBlocks.set(child._manufacturer, child);
@@ -87,17 +93,17 @@ class CartComponent extends HTMLElement {
     let grandTotal = 0;
 
     groups.forEach(group => {
-      let el = existingBlocks.get(group.manufacturer);
+      let element = existingBlocks.get(group.manufacturer);
 
-      if (!el) {
-        el = document.createElement('cart-manufacturer');
-        this._cartContainer.appendChild(el);
+      if (!element) {
+        element = document.createElement('cart-manufacturer');
+        this._cartContainer.appendChild(element);
       }
-      el.data = group;
+      element.data = group;
 
-      group.products.forEach(p => {
-        if (p.selected !== false) {
-          grandTotal += (p.price ?? 0) * (p.quantity ?? 1);
+      group.products.forEach(product => {
+        if (product.selected !== false) {
+          grandTotal += (product.price ?? 0) * (product.quantity ?? 1);
         }
       });
     });

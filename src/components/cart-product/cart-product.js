@@ -8,8 +8,10 @@ class CartProduct extends HTMLElement {
     loadTemplate('/src/components/cart-product/cart-product.html')
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);
+
         this.cacheElements();
         this.addEventListeners();
+
         if (this._product) this.renderProduct(this._product);
       })
       .catch(err => {
@@ -36,7 +38,9 @@ class CartProduct extends HTMLElement {
   addEventListeners() {
     const updateQuantity = getNewQuantity => () => {
       if (!this._product) return;
+
       const quantity = getNewQuantity(this._product.quantity);
+
       this.dispatchEvent(
         new CustomEvent('update-quantity', {
           detail: { name: this._product.name, quantity },
@@ -48,15 +52,17 @@ class CartProduct extends HTMLElement {
 
     this.plusButton?.addEventListener(
       'click',
-      updateQuantity(q => q + 1)
+      updateQuantity(quantity => quantity + 1)
     );
+
     this.minusButton?.addEventListener(
       'click',
-      updateQuantity(q => Math.max(1, q - 1))
+      updateQuantity(quantity => Math.max(1, quantity - 1))
     );
 
     this.removeButton?.addEventListener('click', () => {
       if (!this._product) return;
+
       this.dispatchEvent(
         new CustomEvent('remove-item', {
           detail: { name: this._product.name },
@@ -66,11 +72,12 @@ class CartProduct extends HTMLElement {
       );
     });
 
-    this.checkbox?.addEventListener('change', e => {
+    this.checkbox?.addEventListener('change', event => {
       if (!this._product) return;
+
       this.dispatchEvent(
         new CustomEvent('toggle-selection', {
-          detail: { name: this._product.name, selected: e.target.checked },
+          detail: { name: this._product.name, selected: event.target.checked },
           bubbles: true,
           composed: true,
         })
@@ -84,19 +91,17 @@ class CartProduct extends HTMLElement {
       !this.priceSpan ||
       !this.quantitySpan ||
       !this.checkbox
-    )
+    ) {
       return;
-
-    if (data.quantity === 1) {
-      this.minusButton.disabled = true;
-    } else {
-      this.minusButton.disabled = false;
     }
+
+    this.minusButton.disabled = data.quantity === 1;
     this.checkbox.checked = data.selected !== false;
     this.nameSpan.textContent = data.name ?? 'Unknown';
-    this.priceSpan.textContent = data.price
-      ? Number(data.price).toFixed(2) + '$'
-      : '0.00$';
+
+    const price = data.price ? Number(data.price).toFixed(2) + '$' : '0.00$';
+    this.priceSpan.textContent = price;
+
     this.quantitySpan.textContent = data.quantity ?? 1;
   }
 }

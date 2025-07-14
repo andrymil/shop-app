@@ -2,9 +2,9 @@ export const cartState = {
   items: [],
 
   addItem(product) {
-    const existing = this.items.find(p => p.name === product.name);
-    if (existing) {
-      existing.quantity += product.quantity ?? 1;
+    const existingItem = this.items.find(item => item.name === product.name);
+    if (existingItem) {
+      existingItem.quantity += product.quantity ?? 1;
     } else {
       this.items.push({
         ...product,
@@ -21,14 +21,18 @@ export const cartState = {
   },
 
   toggleSelection(name, selected) {
-    const item = this.items.find(p => p.name === name);
-    if (item) item.selected = selected;
+    const item = this.items.find(items => items.name === name);
+    if (item) {
+      item.selected = selected;
+    }
     this.notify();
   },
 
   updateQuantity(name, quantity) {
-    const item = this.items.find(p => p.name === name);
-    if (item) item.quantity = quantity;
+    const item = this.items.find(item => item.name === name);
+    if (item) {
+      item.quantity = quantity;
+    }
     this.notify();
   },
 
@@ -43,6 +47,8 @@ export const cartState = {
 
   listeners: [],
   notify() {
-    for (const cb of this.listeners) cb(this.items);
+    for (const callback of this.listeners) {
+      callback(this.items);
+    }
   },
 };
