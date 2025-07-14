@@ -29,6 +29,7 @@ class ShopComponent extends HTMLElement {
     this._container = this.shadowRoot.getElementById('shop-products');
     this._searchInput = this.shadowRoot.getElementById('search-input');
     this._sortMenu = this.shadowRoot.querySelector('sort-menu');
+    this._shopEmptyDisplay = this.shadowRoot.querySelector('.shop-empty');
   }
 
   async loadProducts() {
@@ -44,6 +45,10 @@ class ShopComponent extends HTMLElement {
   }
 
   renderProducts(products) {
+    const isEmpty = !products.length;
+    this._container.hidden = isEmpty;
+    this._shopEmptyDisplay.hidden = !isEmpty;
+
     const existingMap = new Map();
     this._allProductElements.forEach(element => {
       existingMap.set(element.product.name, element);

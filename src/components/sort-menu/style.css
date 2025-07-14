@@ -16,13 +16,16 @@
   min-width: 160px;
   text-align: left;
 }
+
 .search-input {
   padding: 10px 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 14px;
   font-family: Arial, sans-serif;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
   outline: none;
   background-color: #f9f9f9;
 }
@@ -49,7 +52,9 @@
 .sort-options li {
   padding: 6px 10px;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
   display: flex;
   justify-content: space-between;
   align-items: center;
