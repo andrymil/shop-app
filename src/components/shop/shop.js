@@ -30,6 +30,7 @@ class ShopComponent extends HTMLElement {
     this._searchInput = this.shadowRoot.getElementById('search-input');
     this._sortMenu = this.shadowRoot.querySelector('sort-menu');
     this._shopEmptyDisplay = this.shadowRoot.querySelector('.shop-empty');
+    this._clearButton = this.shadowRoot.getElementById('clear-search');
   }
 
   async loadProducts() {
@@ -110,11 +111,19 @@ class ShopComponent extends HTMLElement {
     });
 
     this._searchInput?.addEventListener('input', () => {
+      const hasValue = this._searchInput.value.trim().length > 0;
+      this._clearButton.hidden = !hasValue;
       this.applyFiltersAndSorting();
     });
 
     this._sortMenu?.addEventListener('sort-changed', event => {
       this._currentSort = event.detail;
+      this.applyFiltersAndSorting();
+    });
+
+    this._clearButton?.addEventListener('click', () => {
+      this._searchInput.value = '';
+      this._clearButton.hidden = true;
       this.applyFiltersAndSorting();
     });
   }

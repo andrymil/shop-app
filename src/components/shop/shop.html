@@ -13,12 +13,15 @@
         <header class="header">
           <img src="/public/shop.png" width="28px" height="28px" />
           <p class="title"><b>THE SHOP</b></p>
-          <input
-            type="text"
-            id="search-input"
-            class="search-input"
-            placeholder="Search products..."
-          />
+          <div class="search-wrapper">
+            <input
+              type="text"
+              id="search-input"
+              class="search-input"
+              placeholder="Search products..."
+            />
+            <span id="clear-search" class="clear-btn" hidden>&times;</span>
+          </div>
           <sort-menu></sort-menu>
         </header>
         <span class="shop-empty" hidden>
