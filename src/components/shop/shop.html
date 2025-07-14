@@ -13,16 +13,18 @@
         <header class="header">
           <img src="/public/shop.png" width="28px" height="28px" />
           <p class="title"><b>THE SHOP</b></p>
-          <div class="search-wrapper">
-            <input
-              type="text"
-              id="search-input"
-              class="search-input"
-              placeholder="Search products..."
-            />
-            <span id="clear-search" class="clear-btn" hidden>&times;</span>
+          <div class="header-actions">
+            <div class="search-wrapper">
+              <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="Search products..."
+              />
+              <span id="clear-search" class="clear-btn" hidden>&times;</span>
+            </div>
+            <sort-menu></sort-menu>
           </div>
-          <sort-menu></sort-menu>
         </header>
         <span class="shop-empty" hidden>
           There are no products matching your query
