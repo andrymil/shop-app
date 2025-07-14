@@ -1,18 +1,22 @@
 import { cartState } from '/src/state/cartState.js';
 import { loadTemplate } from '/src/utils/templateLoader.js';
 import '/src/components/shop-product/shop-product.js';
+import '/src/components/sort-menu/sort-menu.js';
 
 class ShopComponent extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+
+    this._allProducts = [];
     this._allProductElements = [];
+    this._currentSort = { key: null, direction: 'asc' };
 
     loadTemplate('/src/components/shop/shop.html')
       .then(async templateContent => {
         this.shadowRoot.appendChild(templateContent);
 
-        this.cacheELements();
+        this.cacheElements();
         await this.loadProducts();
         this.addEventListeners();
       })
@@ -21,15 +25,18 @@ class ShopComponent extends HTMLElement {
       });
   }
 
-  cacheELements() {
+  cacheElements() {
     this._container = this.shadowRoot.getElementById('shop-products');
     this._searchInput = this.shadowRoot.getElementById('search-input');
+    this._sortMenu = this.shadowRoot.querySelector('sort-menu');
   }
 
   async loadProducts() {
     try {
       const res = await fetch('/src/utils/data.json');
       const { products } = await res.json();
+
+      this._allProducts = products;
       this.renderProducts(products);
     } catch (err) {
       console.error('Error fetching shop products:', err);
@@ -37,12 +44,58 @@ class ShopComponent extends HTMLElement {
   }
 
   renderProducts(products) {
+    const existingMap = new Map();
+    this._allProductElements.forEach(element => {
+      existingMap.set(element.product.name, element);
+    });
+
+    const fragment = document.createDocumentFragment();
+    this._allProductElements = [];
+
     products.forEach(product => {
-      const element = document.createElement('shop-product');
+      let element = existingMap.get(product.name);
+      if (!element) {
+        element = document.createElement('shop-product');
+      }
       element.product = product;
-      this._container.appendChild(element);
+
+      fragment.appendChild(element);
       this._allProductElements.push(element);
     });
+
+    this._container.replaceChildren(fragment);
+  }
+
+  applyFiltersAndSorting() {
+    const query = this._searchInput?.value.toLowerCase() ?? '';
+    const { key, direction } = this._currentSort;
+
+    let filtered = this._allProducts.filter(product => {
+      const name = product.name.toLowerCase();
+      const manufacturer = product.manufacturer.toLowerCase();
+      return name.includes(query) || manufacturer.includes(query);
+    });
+
+    if (key) {
+      filtered.sort((a, b) => {
+        let aVal;
+        let bVal;
+
+        if (key === 'price') {
+          aVal = a[key];
+          bVal = b[key];
+        } else {
+          aVal = (a[key] ?? '').toString().toLowerCase();
+          bVal = (b[key] ?? '').toString().toLowerCase();
+        }
+
+        if (aVal < bVal) return direction === 'asc' ? -1 : 1;
+        if (aVal > bVal) return direction === 'asc' ? 1 : -1;
+        return 0;
+      });
+    }
+
+    this.renderProducts(filtered);
   }
 
   addEventListeners() {
@@ -51,16 +104,13 @@ class ShopComponent extends HTMLElement {
       cartState.addItem(product);
     });
 
-    this._searchInput?.addEventListener('input', event => {
-      const query = event.target.value.toLowerCase();
+    this._searchInput?.addEventListener('input', () => {
+      this.applyFiltersAndSorting();
+    });
 
-      this._allProductElements.forEach(element => {
-        const name = element.product.name.toLowerCase();
-        const manufacturer = element.product.manufacturer.toLowerCase();
-
-        const isMatch = name.includes(query) || manufacturer.includes(query);
-        element.style.display = isMatch ? '' : 'none';
-      });
+    this._sortMenu?.addEventListener('sort-changed', event => {
+      this._currentSort = event.detail;
+      this.applyFiltersAndSorting();
     });
   }
 }
