@@ -34,7 +34,9 @@
 }
 
 .sort-toggle-btn:hover {
-  background-color: #e6e6e6;
+  background-color: #fff;
+  border-color: #bbb;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
 }
 
 .sort-options {
