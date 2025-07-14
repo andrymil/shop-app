@@ -20,6 +20,16 @@ class ShopProductTemplate extends HTMLElement {
       );
   }
 
+  set product(data) {
+    this._product = data;
+    this.quantity = 1;
+    this.renderProduct(data);
+  }
+
+  get product() {
+    return this._product;
+  }
+
   cacheElements() {
     this.quantityDisplay = this.shadowRoot.getElementById('quantity');
     this.increaseButton = this.shadowRoot.querySelector(
@@ -63,12 +73,6 @@ class ShopProductTemplate extends HTMLElement {
     }
 
     this.decreaseButton.disabled = this.quantity === 1;
-  }
-
-  set product(data) {
-    this._product = data;
-    this.quantity = 1;
-    this.renderProduct(data);
   }
 
   renderProduct(data) {

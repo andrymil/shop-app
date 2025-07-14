@@ -1,8 +1,8 @@
 .shop {
   border: 2px solid black;
   border-radius: 5px;
-  max-width: 634px;
-  height: 92vh;
+  width: 628px;
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
   padding: 8px;
@@ -33,7 +33,7 @@
 
 @media (max-width: 1040px) {
   .shop {
-    max-width: 442px;
+    max-width: 432px;
   }
 
   .products-list {
@@ -43,7 +43,7 @@
 
 @media (max-width: 850px) {
   .shop {
-    max-width: 634px;
+    max-width: 628px;
   }
 
   .products-list {
@@ -53,7 +53,7 @@
 
 @media (max-width: 690px) {
   .shop {
-    max-width: 442px;
+    max-width: 432px;
   }
 
   .products-list {
@@ -63,6 +63,6 @@
 
 @media (max-width: 500px) {
   .shop {
-    max-width: 240px;
+    max-width: 228px;
   }
 }
