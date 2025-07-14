@@ -1,12 +1,13 @@
 .cart {
   position: relative;
-  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   padding: 8px;
   width: 340px;
   max-height: 92vh;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .header {

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <template id="sort-dropdown-template">
+      <style>
+        @import '/src/components/sort-dropdown/style.css';
+      </style>
+      <section class="sort-menu">
+        <button class="sort-toggle-btn">Sort by...</button>
+        <ul class="sort-options hidden">
+          <li data-sort="name">Name <span class="arrow"></span></li>
+          <li data-sort="manufacturer">
+            Manufacturer <span class="arrow"></span>
+          </li>
+          <li data-sort="price">Price <span class="arrow"></span></li>
+        </ul>
+      </section>
+    </template>
+  </body>
+</html>

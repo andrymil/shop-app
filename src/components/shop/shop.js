@@ -12,15 +12,18 @@ class ShopComponent extends HTMLElement {
       .then(async templateContent => {
         this.shadowRoot.appendChild(templateContent);
 
-        this._container = this.shadowRoot.getElementById('shop-products');
-        this._searchInput = this.shadowRoot.getElementById('search-input');
-
+        this.cacheELements();
         await this.loadProducts();
         this.addEventListeners();
       })
       .catch(err => {
         console.error('Failed to load shop template:', err);
       });
+  }
+
+  cacheELements() {
+    this._container = this.shadowRoot.getElementById('shop-products');
+    this._searchInput = this.shadowRoot.getElementById('search-input');
   }
 
   async loadProducts() {
