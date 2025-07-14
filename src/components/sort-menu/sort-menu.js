@@ -1,16 +1,14 @@
 import { loadTemplate } from '/src/utils/templateLoader.js';
 
-class SortDropdown extends HTMLElement {
+class SortMenu extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
 
-    loadTemplate('/src/components/sort-dropdown/sort-dropdown.html').then(
-      template => {
-        this.shadowRoot.appendChild(template);
-        this.init();
-      }
-    );
+    loadTemplate('/src/components/sort-menu/sort-menu.html').then(template => {
+      this.shadowRoot.appendChild(template);
+      this.init();
+    });
   }
 
   init() {
@@ -86,4 +84,4 @@ class SortDropdown extends HTMLElement {
   }
 }
 
-customElements.define('sort-dropdown', SortDropdown);
+customElements.define('sort-menu', SortMenu);
