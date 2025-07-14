@@ -23,6 +23,35 @@
   margin-left: 10px;
 }
 
+.search-input {
+  margin-left: 20px;
+  max-width: 400px;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  background-color: #fff;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  background-color: #fff;
+}
+
+.search-input:hover {
+  background-color: #f9f9f9;
+  border-color: #bbb;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
 .products-list {
   display: flex;
   flex-wrap: wrap;
