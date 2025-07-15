@@ -1,5 +1,6 @@
 import { cartState } from '/src/state/cartState.js';
 import { loadTemplate } from '/src/utils/templateLoader.js';
+import { showSnackbar } from '/src/utils/snackbar.js';
 import '/src/components/shop-product/shop-product.js';
 import '/src/components/sort-menu/sort-menu.js';
 
@@ -108,6 +109,7 @@ class ShopComponent extends HTMLElement {
     this._container.addEventListener('add-to-cart', event => {
       const product = event.detail.product;
       cartState.addItem(product);
+      showSnackbar(`${product.name} added to cart`);
     });
 
     this._searchInput?.addEventListener('input', () => {

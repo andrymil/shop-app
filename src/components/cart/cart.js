@@ -1,5 +1,6 @@
 import { cartState } from '/src/state/cartState.js';
 import { loadTemplate } from '/src/utils/templateLoader.js';
+import { showSnackbar } from '/src/utils/snackbar.js';
 import '/src/components/cart-manufacturer/cart-manufacturer.js';
 
 class CartComponent extends HTMLElement {
@@ -39,6 +40,7 @@ class CartComponent extends HTMLElement {
     this._cartContainer.addEventListener('remove-item', event => {
       const { name } = event.detail;
       cartState.removeItem(name);
+      showSnackbar(`${name} removed from cart`, 'red');
     });
 
     this._cartContainer.addEventListener('toggle-selection', event => {
