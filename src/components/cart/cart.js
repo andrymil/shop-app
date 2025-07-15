@@ -52,6 +52,7 @@ class CartComponent extends HTMLElement {
 
     this._clearButton.addEventListener('click', () => {
       cartState.clear();
+      showSnackbar('Cart has been cleared', 'red');
     });
 
     this._buyButton.addEventListener('click', () => {
@@ -65,8 +66,15 @@ class CartComponent extends HTMLElement {
     try {
       await new Promise(resolve => setTimeout(resolve, 3000));
 
-      showSnackbar('Thank you for your purchase!');
+      console.log(
+        'Products',
+        cartState.items.map(item => ({
+          name: item.name,
+          quantity: item.quantity,
+        }))
+      );
       cartState.clear();
+      showSnackbar('Thank you for your purchase!');
     } finally {
       hideLoader();
     }
