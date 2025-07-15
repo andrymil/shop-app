@@ -29,6 +29,7 @@ class CartComponent extends HTMLElement {
     this._totalDisplay = root.getElementById('grand-total');
     this._badgeDisplay = root.getElementById('badge');
     this._clearButton = root.getElementById('clear-button');
+    this._buyButton = root.getElementById('buy-button');
   }
 
   addEventListeners() {
@@ -51,6 +52,18 @@ class CartComponent extends HTMLElement {
     this._clearButton.addEventListener('click', () => {
       cartState.clear();
     });
+
+    this._buyButton.addEventListener('click', () => {
+      this.handlePurchase();
+    });
+  }
+
+  handlePurchase() {
+    setTimeout(() => {
+      cartState.clear();
+      showSnackbar('Purchase completed successfully!');
+      console.log(cartState.items);
+    }, 3000);
   }
 
   groupByManufacturer(items) {
@@ -125,6 +138,7 @@ class CartComponent extends HTMLElement {
       this._totalDisplay.hidden = true;
       this._cartEmptyDisplay.hidden = false;
       this._clearButton.hidden = true;
+      this._buyButton.hidden = true;
       return;
     }
 
@@ -138,6 +152,7 @@ class CartComponent extends HTMLElement {
     this._cartContainer.hidden = false;
     this._totalDisplay.hidden = false;
     this._clearButton.hidden = false;
+    this._buyButton.hidden = false;
   }
 }
 

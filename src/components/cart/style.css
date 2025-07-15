@@ -7,7 +7,9 @@
   max-height: 92vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .header {
@@ -30,8 +32,7 @@
   overflow-y: auto;
   flex-grow: 1;
   overflow-y: auto;
-  margin-bottom: 36px;
-  padding-top: 15px
+  padding-top: 15px;
 }
 
 #cart-empty {
@@ -48,13 +49,16 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #ddd;
-  padding: 12px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #f1f1f1;
+  padding: 14px 12px;
   text-align: center;
   font-size: 17px;
   font-weight: bold;
-  border-top: 2px solid #999;
+  border-top: 2px solid #ccc;
   z-index: 1;
+  color: #333;
 }
 
 #clear-button {
@@ -66,6 +70,42 @@
   position: absolute;
   right: 20px;
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#clear-button:hover {
+  background-color: #cc0024;
+  box-shadow: 0 0 6px rgba(255, 0, 43, 0.4);
+}
+
+#clear-button:active {
+  background-color: #a8001d;
+}
+
+#buy-button {
+  margin-bottom: 48px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: rgb(64, 132, 187);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#buy-button:hover {
+  background-color: rgb(54, 118, 168);
+  box-shadow: 0 0 6px rgba(64, 132, 187, 0.4);
+}
+
+#buy-button:active {
+  background-color: rgb(44, 104, 148);
 }
 
 #badge {
