@@ -1,6 +1,7 @@
 import { cartState } from '/src/state/cartState.js';
 import { loadTemplate } from '/src/utils/templateLoader.js';
 import { showSnackbar } from '/src/utils/snackbar.js';
+import { showLoader, hideLoader } from '/src/utils/loader.js';
 import '/src/components/cart-manufacturer/cart-manufacturer.js';
 
 class CartComponent extends HTMLElement {
@@ -54,16 +55,21 @@ class CartComponent extends HTMLElement {
     });
 
     this._buyButton.addEventListener('click', () => {
-      this.handlePurchase();
+      this.handleBuy();
     });
   }
 
-  handlePurchase() {
-    setTimeout(() => {
+  async handleBuy() {
+    showLoader();
+
+    try {
+      await new Promise(resolve => setTimeout(resolve, 3000));
+
+      showSnackbar('Thank you for your purchase!');
       cartState.clear();
-      showSnackbar('Purchase completed successfully!');
-      console.log(cartState.items);
-    }, 3000);
+    } finally {
+      hideLoader();
+    }
   }
 
   groupByManufacturer(items) {
