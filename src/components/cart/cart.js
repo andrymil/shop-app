@@ -13,7 +13,7 @@ class CartComponent extends HTMLElement {
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);
 
-        this.cacheElements();
+        this.getElements();
         this.addEventListeners();
 
         cartState.subscribe(this.onCartChange.bind(this));
@@ -23,7 +23,7 @@ class CartComponent extends HTMLElement {
       });
   }
 
-  cacheElements() {
+  getElements() {
     const root = this.shadowRoot;
     this._cartContainer = root.getElementById('cart-products');
     this._cartEmptyDisplay = root.getElementById('cart-empty');

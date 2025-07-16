@@ -9,7 +9,7 @@ class CartProduct extends HTMLElement {
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);
 
-        this.cacheElements();
+        this.getElements();
         this.addEventListeners();
 
         if (this._product) this.renderProduct(this._product);
@@ -24,7 +24,7 @@ class CartProduct extends HTMLElement {
     this.renderProduct(data);
   }
 
-  cacheElements() {
+  getElements() {
     const root = this.shadowRoot;
     this.nameSpan = root.getElementById('name');
     this.priceSpan = root.getElementById('price');

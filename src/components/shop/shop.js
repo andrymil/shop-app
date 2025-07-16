@@ -17,7 +17,7 @@ class ShopComponent extends HTMLElement {
       .then(async templateContent => {
         this.shadowRoot.appendChild(templateContent);
 
-        this.cacheElements();
+        this.getElements();
         await this.loadProducts();
         this.addEventListeners();
       })
@@ -26,7 +26,7 @@ class ShopComponent extends HTMLElement {
       });
   }
 
-  cacheElements() {
+  getElements() {
     this._container = this.shadowRoot.getElementById('shop-products');
     this._searchInput = this.shadowRoot.getElementById('search-input');
     this._sortMenu = this.shadowRoot.querySelector('sort-menu');

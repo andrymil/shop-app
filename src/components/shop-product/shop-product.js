@@ -10,7 +10,7 @@ class ShopProductTemplate extends HTMLElement {
       .then(templateContent => {
         this.shadowRoot.appendChild(templateContent);
 
-        this.cacheElements();
+        this.getElements();
         this.addEventListeners();
 
         if (this._product) this.renderProduct(this._product);
@@ -30,7 +30,7 @@ class ShopProductTemplate extends HTMLElement {
     return this._product;
   }
 
-  cacheElements() {
+  getElements() {
     this.quantityDisplay = this.shadowRoot.getElementById('quantity');
     this.increaseButton = this.shadowRoot.querySelector(
       '.amount-buttons button:first-child'

@@ -16,7 +16,7 @@ class CartManufacturer extends HTMLElement {
         if (this._data) {
           this.updateProducts();
         }
-        this.cacheELements();
+        this.getElements();
         this.addEventListeners();
       })
       .catch(err =>
@@ -38,7 +38,7 @@ class CartManufacturer extends HTMLElement {
     });
   }
 
-  cacheELements() {
+  getElements() {
     this._checkbox = this.shadowRoot.querySelector('.manufacturer-select');
     this._container = this.shadowRoot.getElementById('products');
     this._totalSpan = this.shadowRoot.getElementById('total');
