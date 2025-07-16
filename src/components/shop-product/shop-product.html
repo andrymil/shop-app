@@ -8,7 +8,7 @@
     <template id="shop-product-template">
       <section class="product">
         <div class="product-basics">
-          <img id="image" alt="Image" width="60px" height="60px" />
+          <img id="image" alt="Image" class="product-image" />
           <div>
             <b id="name"></b>
             <br />
@@ -26,6 +26,7 @@
           <input
             id="cartButton"
             type="image"
+            alt="Add to cart"
             src="/public/add_to_cart.png"
             class="cart-add"
           />
@@ -58,6 +59,12 @@
           display: grid;
           grid-template-columns: 3fr 1fr 1fr 1fr;
           grid-template-rows: auto;
+        }
+
+        .product-image {
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
         }
 
         #price {

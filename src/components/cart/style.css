@@ -27,6 +27,12 @@
   margin-left: 10px;
 }
 
+.cart-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+}
+
 #cart-products {
   flex: 1;
   overflow-y: auto;
